@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>ویجت TGJU</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            direction: rtl;
+        }
+        tgju {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <tgju
+        type="market-data"
+        items="137152,137151,137153,137154,137155"
+        columns="dot,diff,low,high,time"
+        token="webservice"
+    ></tgju>
+    <script src="https://api.tgju.org/v1/widget/v2" defer></script>
+</body>
+</html>
