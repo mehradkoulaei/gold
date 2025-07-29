@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نصب PWA</title>
+    <title>نصب اپلیکیشن بازیبل</title>
     <style>
         body {
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
+            height: 82px; /* تطبیق با ارتفاع iframe */
+            font-family: 'Vazir', Arial, sans-serif;
+            background-color: transparent; /* پس‌زمینه شفاف برای iframe */
         }
         .banner {
             text-align: center;
         }
         .banner-button {
-            background-color: #007bff;
+            background-color: #DE1CAE; /* رنگ برند بازیبل */
             color: white;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 10px 20px; /* کوچکتر برای فیت شدن در iframe */
+            font-size: 16px; /* کمی کوچکتر برای تناسب */
             border: none;
-            border-radius: 5px;
+            border-radius: 8px; /* گوشه‌های نرم برای حس کودکانه */
             cursor: pointer;
             transition: background-color 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-family: 'Vazir', Arial, sans-serif;
         }
         .banner-button:hover {
-            background-color: #0056b3;
+            background-color: #C71585; /* رنگ تیره‌تر برای هاور */
         }
     </style>
 </head>
 <body>
     <div class="banner">
-        <button class="banner-button" onclick="promptInstall()">نصب اپلیکیشن Kojid</button>
+        <button class="banner-button" onclick="promptInstall()">نصب اپلیکیشن بازیبل</button>
     </div>
 
     <script>
@@ -49,8 +52,6 @@
         // تابع برای نمایش دیالوگ نصب
         function promptInstall() {
             if (deferredPrompt) {
-                // هدایت به صفحه اصلی سایت برای فعال‌سازی PWA
-                window.location.href = 'https://kojid.ir';
                 // نمایش دیالوگ نصب
                 deferredPrompt.prompt();
                 // بررسی انتخاب کاربر
@@ -63,10 +64,18 @@
                     deferredPrompt = null;
                 });
             } else {
-                // اگر رویداد نصب در دسترس نیست، به صفحه اصلی هدایت شود
-                window.location.href = 'https://kojid.ir';
+                // پیام در صورت نبود قابلیت PWA
+                alert('لطفاً به سایت بازیبل (https://bazibel.com) مراجعه کنید و گزینه "افزودن به صفحه اصلی" را از مرورگر خود انتخاب کنید.');
             }
         }
+
+        // بارگذاری سایت برای فعال‌سازی منیفست و سرویس‌ورکر
+        window.addEventListener('load', () => {
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none'; // مخفی کردن iframe
+            iframe.src = 'https://bazibel.com';
+            document.body.appendChild(iframe);
+        });
     </script>
 </body>
 </html>
