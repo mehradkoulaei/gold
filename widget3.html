@@ -1,53 +1,72 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kojid PWA Banner</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      text-align: center;
-      background-color: transparent;
-    }
-    .banner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 82px;
-      background: linear-gradient(90deg, #007bff, #00b7eb);
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .banner:hover {
-      background: linear-gradient(90deg, #0056b3, #0098c7);
-    }
-    .banner-text {
-      padding: 0 20px;
-    }
-    @media (max-width: 1496.4px) {
-      .banner {
-        font-size: 16px;
-      }
-    }
-    @media (max-width: 600px) {
-      .banner {
-        font-size: 14px;
-        height: 60px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نصب PWA</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .banner {
+            text-align: center;
+        }
+        .banner-button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .banner-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <a href="https://kojid.ir/install" class="banner" target="_blank">
-    <span class="banner-text">اپلیکیشن کوجید رو نصب کن و از تخفیف‌های ویژه لذت ببر!</span>
-  </a>
+    <div class="banner">
+        <button class="banner-button" onclick="promptInstall()">نصب اپلیکیشن Kojid</button>
+    </div>
+
+    <script>
+        let deferredPrompt;
+
+        // گوش دادن به رویداد beforeinstallprompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // جلوگیری از نمایش خودکار دیالوگ نصب
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        // تابع برای نمایش دیالوگ نصب
+        function promptInstall() {
+            if (deferredPrompt) {
+                // هدایت به صفحه اصلی سایت برای فعال‌سازی PWA
+                window.location.href = 'https://kojid.ir';
+                // نمایش دیالوگ نصب
+                deferredPrompt.prompt();
+                // بررسی انتخاب کاربر
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('کاربر نصب PWA را پذیرفت');
+                    } else {
+                        console.log('کاربر نصب PWA را رد کرد');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // اگر رویداد نصب در دسترس نیست، به صفحه اصلی هدایت شود
+                window.location.href = 'https://kojid.ir';
+            }
+        }
+    </script>
 </body>
 </html>
