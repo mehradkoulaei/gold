@@ -7,39 +7,40 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Vazir', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       direction: rtl;
       text-align: center;
-      background-color: #f8f9fa;
+      background-color: transparent;
     }
     .banner {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
-      max-width: 728px;
-      height: 90px;
+      height: 82px;
       background: linear-gradient(90deg, #007bff, #00b7eb);
       color: white;
-      border-radius: 12px;
-      margin: 10px auto;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
       text-decoration: none;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
-      transition: transform 0.3s, background 0.3s;
+      transition: background 0.3s;
     }
     .banner:hover {
       background: linear-gradient(90deg, #0056b3, #0098c7);
-      transform: scale(1.05);
     }
     .banner-text {
       padding: 0 20px;
     }
+    @media (max-width: 1496.4px) {
+      .banner {
+        font-size: 16px;
+      }
+    }
     @media (max-width: 600px) {
       .banner {
-        height: 70px;
-        font-size: 16px;
+        font-size: 14px;
+        height: 60px;
       }
     }
   </style>
