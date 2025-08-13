@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TGJU Widget</title>
+    <title>نمایش تیکر TGJU با استایل سفارشی</title>
 </head>
 <body>
+
+    <!-- ابزارک تیکر TGJU با استایل سفارشی -->
     <tgju
         type="ticker"
         items="137121"
         columns="dot"
         token="webservice"
         styles='{
-            "low": "#ffffff"
-        }'>
-    </tgju>
+            "hover": "#ffffff",
+            "border": "#ffffff",
+            "separator": "#ffffff",
+            "low": "#ffffff",
+            "high": "#ffffff",
+            "copyright": "#ffffff"
+        }'
+    ></tgju>
+
     <script src="https://api.tgju.org/v1/widget/v2" defer></script>
+
 </body>
 </html>
